@@ -1,0 +1,67 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int partition_arr(int arr[],int lo,int hi)
+{
+    int pivot=arr[hi];
+    int i=lo;
+    static int n=hi; 
+    for(int j=lo; j<hi; j++)
+    {
+        if(arr[j]<=pivot)
+        {
+            int temp=arr[j];
+            arr[j]=arr[i];
+            arr[i]=temp;
+            i++;
+        }
+    }
+    int temp=arr[i];
+    arr[i]=arr[hi];
+    arr[hi]=temp;
+    for(int i=0;i<=n;i++)
+         cout<<arr[i]<<" ";
+        cout<<endl;
+ //   for(int i=0;i<hi;i++)
+   //         cout<<arr[i];
+     //   cout<<endl;
+    return i;
+}
+
+
+
+void quickSort(int arr[],int lo,int hi)
+{
+   // static int n=hi;
+    if(lo<hi)
+    {
+         
+        int p=partition_arr(arr,lo,hi);
+        quickSort(arr,lo,p-1);
+        quickSort(arr,p+1,hi);
+        
+        
+    }
+}
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int n;
+    cin>>n;
+    int arr[n];
+    int i=0;
+    while(i<n)
+        {
+        cin>>arr[i];
+        i++;
+    }
+    quickSort(arr,0,n-1);
+ 
+    
+    return 0;
+}
