@@ -1,0 +1,73 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <string.h>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    char msg[100];
+    cin>>msg;
+    int len=strlen(msg);
+    float no_sqrt=sqrt(len);
+    int no_floor=floor(no_sqrt);
+    int no_ceil=ceil(no_sqrt);
+    int no,row=no_ceil,col=no_ceil;
+    for(int i=no_floor;i<=no_ceil;i++)
+        {
+        //cout<<"outside outer loop"<<"i="<<i<<endl;
+        for(int j=i;j<=no_ceil;j++)
+            {
+            no=i*j;
+            //cout<<"outside loop";
+              //      cout<<"i="<<i<<"  "<<"j="<<j<<endl;
+            if(no>=len)
+                {
+                if(row*col>no)
+                    {
+                    row=i;
+                    col=j;
+                }
+                
+            }
+        }
+    }
+    int k=0;
+    char arr[row][col];
+    for(int i=0;i<row;i++)
+        for(int j=0;j<col;j++)
+               arr[i][j]='0';
+    for(int i=0;i<row;i++)
+        {
+        for(int j=0;j<col;j++)
+            {
+            if(k>=len)
+                break;
+            arr[i][j]=msg[k++];
+        }
+        if(k>=len)
+                break;
+    }
+    /* for(int i=0;i<row;i++)
+        {
+        for(int j=0;j<col;j++)
+            {
+            
+            cout<<arr[i][j];
+        }
+        cout<<"\n";
+    }*/
+    for(int i=0;i<col;i++)
+        {
+        for(int j=0;j<row;j++)
+            {
+            if(arr[j][i]!='0')
+                cout<<arr[j][i];
+        }
+        cout<<" ";
+    }
+    return 0;
+}
